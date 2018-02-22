@@ -1,0 +1,183 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		include head_script.pug
+		title Anagram Finder
+		script(src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous")
+
+
+
+		style(type="text/css").
+			body{
+				background-color:#f5f5f5
+			}
+
+			nav{
+				background-color: white;
+			}
+
+			.main a{
+				margin : auto;
+				font-size: xx-large;
+				font-weight:700;
+				color: darkcyan !important;
+				text-shadow: 3px 3px 5px black;
+
+			}
+
+			.main{
+				box-shadow: 2px 2px 20px grey;
+			}
+
+			
+
+			#input_box{
+				box-shadow: 5px 5px 20px grey;
+				width:50vw;
+				height:8vh;
+				margin:auto;
+				min-height: 50px;
+				margin-top: 10vh;
+
+			}
+
+			.result{
+				/*display: none; */
+				box-shadow: 5px 5px 20px grey;
+				width:50vw;
+				height: 40vh;
+				margin:auto;
+				min-height: 30vh;
+				
+			}
+
+			.result_data h2{
+				padding-top:2vh;
+				text-align:center;
+
+			}
+
+			.result_data h5{
+				padding-top:2vh;
+				text-align:center;
+				color: grey;
+			}
+
+
+
+			#info-alert{
+				margin-top: 5vh;
+				opacity: 0;
+			}
+
+	body
+
+		nav(class="navbar navbar-light main" )
+			a(class="navbar-brand" href="#") Anagram Finder
+
+		div.container
+			
+			
+			div(class="alert alert-info alert-dismissible fade show" role="alert" id="info-alert")
+				button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+					| <span aria-hidden="true">&times;</span>
+				| <strong>Welcome to the Anagram Finder</strong> Please type word bellow and press enter key.
+			
+			form
+				div
+					input( name="word" class=" form-control" id="input_box" placeholder="Please enter word here ")
+				
+				
+					div.result
+						div.result_data
+							h2 word
+							hr
+							h5 4 anagram created for stop
+							h5 Anagrams: post  spot stop tops
+							h5 Directory loaded in 1ms
+							h5 Anagram found in 111ms 
+
+						
+
+				
+
+		script.
+
+			$(document).ready(function(){
+				setTimeout(function(){
+					$("#info-alert").css({
+						'opacity': 1
+					})
+
+
+				}, 1000);
+
+				$("#input_box").on("keydown", function(event){
+				
+					if(event.originalEvent.key === 'Enter'){
+						event.preventDefault();
+
+
+						
+						$.get(`http://localhost:8080/findAnagrams/${event.target.value}`, (data,status)=>{
+							if(status === 'success'){
+								console.log(data);
+
+								var result_template = `
+									<h2>data.word<h2>
+
+								`
+
+								//$(".result_data").html(`<h5>Hello world</h5>`)
+								
+							}
+						});
+						/*
+						$(".result").css({
+										"display":"block",
+										"height": "40vh",
+										"transition": "all 2s linear"
+									});
+
+						*/
+						
+						
+					}
+
+
+				});
+
+				$("input, select, textarea").attr("autocomplete", "off");
+
+				
+
+				$("body").on("click", function(event){
+
+					if(event.target.id == "input_box"){
+						//console.log("input box");
+						
+
+					}
+					else{
+						console.log("Hello World...");
+						/*
+						$(".result").css({
+										
+										"height": "0vh",
+										"transition": "all 2s linear"
+
+										});
+
+						*/
+					}
+				});
+				
+			});
+
+
+			
+
+		include body_script.pug

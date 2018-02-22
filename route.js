@@ -7,18 +7,21 @@ const stream = require('stream');
 
 
 router.get('/', (req,res)=>{
-	res.send("Welcome to the Anagram Finder API. Pleaes visit the /findAnagrams");
+	res.status(200);
+	res.render('home');
 });
+
 
 router.get('/findAnagrams/:word', (req,res)=>{
 
 	
 	let word = req.params.word;
-
+	
 	//import the directory file
 	let start = new Date().getTime();
 	let instream = fs.createReadStream('dictionary.txt');
 	let end = new Date().getTime();
+	let dirLoadingTime = `${end - start} ms`;
 
 	let fileLoadTime = end - start; //in milli seconds 
 
@@ -68,18 +71,30 @@ router.get('/findAnagrams/:word', (req,res)=>{
 
 	readFileStream.on('close',function(){
 		let end2 = new Date().getTime();
-		let totalTimeAnagram = end2 - start2;
-		let length = result.length > 0 ? result.length : 'No';
-		let msg = `${length} Anagrams found for ${word} in ${totalTimeAnagram} ms`;	
-		console.log(result);
-		
+		let totalTimeAnagram = `${end2 - start2} ms`;
+		let length = result.length > 1 ? result.length : 'No';
+		let msg = `${length} Anagrams found for ${word} in ${totalTimeAnagram} `;	
+		//console.log(result);
+
+		let temp = {
+			'anagram': result,
+			'msg': msg,
+			'loadingTime': {
+				'directoryLoadingTime': dirLoadingTime,
+				'anagramTime': totalTimeAnagram
+			},
+			'fileName': 'dictionary.txt'
+		};
+		res.status(200);
+		res.send(temp);
+
 
 	});
- 
 
-	res.send("success");
 
 });
+
+
 
 
 
