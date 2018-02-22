@@ -77,6 +77,7 @@ router.get('/findAnagrams/:word', (req,res)=>{
 		//console.log(result);
 
 		let temp = {
+			'word': word,
 			'anagram': result,
 			'msg': msg,
 			'loadingTime': {

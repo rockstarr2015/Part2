@@ -51,6 +51,8 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 				height: 40vh;
 				margin:auto;
 				min-height: 30vh;
+				overflow: auto;
+				word-wrap: break-word; 
 				
 			}
 
@@ -64,6 +66,7 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 				padding-top:2vh;
 				text-align:center;
 				color: grey;
+				
 			}
 
 
@@ -93,12 +96,7 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 				
 					div.result
 						div.result_data
-							h2 word
-							hr
-							h5 4 anagram created for stop
-							h5 Anagrams: post  spot stop tops
-							h5 Directory loaded in 1ms
-							h5 Anagram found in 111ms 
+							
 
 						
 
@@ -127,11 +125,15 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 								console.log(data);
 
 								var result_template = `
-									<h2>data.word<h2>
-
+									<h2>${data.word}</h2>
+									<hr>
+									<h5>${data.msg}</h5>
+									<h5>${data.anagram.join(",")}</h5>
+									<h5>Directory loaded in ${data.loadingTime.directoryLoadingTime}</h5>
+									<h5> Anagram found in ${data.loadingTime.anagramTime}</h5>
 								`
 
-								//$(".result_data").html(`<h5>Hello world</h5>`)
+								$(".result_data").html(result_template);
 								
 							}
 						});
