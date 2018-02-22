@@ -52,6 +52,14 @@ describe("Check anagram result", ()=>{
 			});
 		});
 
+		it("response.word and user typed word should be same", (done)=>{
+			request.get(base_url+'findAnagrams/stop', (error, response, body)=>{
+				var k = JSON.parse(response.body);
+				expect("stop").toEqual(k.word);
+				done();
+			})
+		});
+
 
 
 	})

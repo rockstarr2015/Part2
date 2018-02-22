@@ -123,7 +123,7 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 						
 						$.get(`http://localhost:8080/findAnagrams/${event.target.value}`, (data,status)=>{
 							if(status === 'success'){
-								console.log(data);
+								
 
 								var result_template = `
 									<h2>${data.word}</h2>
@@ -159,13 +159,16 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 
 				$("body").on("click", function(event){
 
+					//if mouse click is detected inside input box
 					if(event.target.id == "input_box"){
-						//console.log("input box");
+					
 						
 
 					}
+					
+					//if mouse click is detected outside input box
 					else{
-						console.log("Hello World...");
+						
 						
 						$(".result").css({
 										
