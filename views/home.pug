@@ -45,12 +45,12 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			}
 
 			.result{
-				/*display: none; */
+				display: none; 
 				box-shadow: 5px 5px 20px grey;
 				width:50vw;
-				height: 40vh;
+				height: 0vh;
+				overflow-y: hidden;
 				margin:auto;
-				min-height: 30vh;
 				overflow: auto;
 				word-wrap: break-word; 
 				
@@ -59,6 +59,7 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 			.result_data h2{
 				padding-top:2vh;
 				text-align:center;
+				overflow-y: hidden;
 
 			}
 
@@ -137,14 +138,14 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 								
 							}
 						});
-						/*
+						
 						$(".result").css({
 										"display":"block",
 										"height": "40vh",
 										"transition": "all 2s linear"
 									});
 
-						*/
+						
 						
 						
 					}
@@ -165,7 +166,7 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 					}
 					else{
 						console.log("Hello World...");
-						/*
+						
 						$(".result").css({
 										
 										"height": "0vh",
@@ -173,7 +174,7 @@ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 
 										});
 
-						*/
+						
 					}
 				});
 				
